@@ -11,6 +11,8 @@ def __():
     import altair as alt
     import polars as pl
     import minari
+
+    alt.data_transformers.disable_max_rows()
     return alt, minari, mo, np, pl
 
 
@@ -57,13 +59,27 @@ def __(dataset_id, minari):
         _returns = [_ep.rewards for _ep in dataset.iterate_episodes()]
         lengths = [len(_r) for _r in _returns]
         returns = [_r.sum() for _r in _returns]
-        
+
 
         if dataset_id.value == "D4RL/pointmaze/umaze-v2":
             options = [f"obs_{_i}" for _i in range(4)]
         else:
             options = []
     return dataset, lengths, options, returns
+
+
+@app.cell(hide_code=True)
+def __(mo):
+    mo.md("""## Inspect recovered environment from the dataset""")
+    return
+
+
+@app.cell
+def __(dataset):
+    if dataset is not None:
+        env = dataset.recover_environment(eval_env=True)
+    dir(env.env.env.env), env.env.env.env.reward_type
+    return (env,)
 
 
 @app.cell(hide_code=True)
@@ -84,12 +100,16 @@ def __(alt, dataset, lengths, pl, returns):
         _chart = alt.Chart(_df, width=100, height=100).mark_bar().encode(
             alt.X("Return", bin=True),
             y="count()",
+        ).properties(
+            title="Distribution of return"
         )
-        _chart = alt.Chart(_df, width=100, height=100).mark_bar().encode(
+        _chart |= alt.Chart(_df, width=100, height=100).mark_bar().encode(
             alt.X("Length", bin=True),
             y="count()",
+        ).properties(
+            title="Distribution of episode length"
         )
-        
+
     _chart
     return
 
