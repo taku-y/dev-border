@@ -20,11 +20,7 @@ sudo systemctl restart docker
 sudo adduser "$(id -un)" docker
 ```
 
-Then, login to the host. Check if GPU is working.
-
-```bash
-docker run --gpus all border_headless nvidia-smi
-```
+Then, logout once and log back in.
 
 ## Clone repositories
 
@@ -45,4 +41,15 @@ sh build.sh
 
 ```bash
 sh run.sh
+```
+
+## GPU
+
+```bash
+cd ~/dev-border/docker_amd64
+sh build_gpu.sh
+```
+
+```bash
+sh run_gpu.sh
 ```
