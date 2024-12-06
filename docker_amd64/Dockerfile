@@ -1,4 +1,5 @@
-FROM --platform=linux/amd64 ubuntu:22.04
+ARG BASE_IMAGE=ubuntu:22.04
+FROM --platform=linux/amd64 ${BASE_IMAGE}
 
 # Adapted from https://qiita.com/takahashiakari/items/f096e5bcdfecf3d5ba90
 ENV DEBIAN_FRONTEND=noninteractive
