@@ -1,4 +1,4 @@
-docker run -td  \
+docker run -td --gpus all \
     --name border \
     -p 6080:6080 \
     --shm-size=512m \
