@@ -1,4 +1,5 @@
 ARG BASE_IMAGE=ubuntu:22.04
+ARG TORCH_URL=https://download.pytorch.org/whl/cpu
 FROM --platform=linux/amd64 ${BASE_IMAGE}
 
 # Adapted from https://qiita.com/takahashiakari/items/f096e5bcdfecf3d5ba90
@@ -78,7 +79,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN cd /root && python3 -m venv venv
 RUN source /root/venv/bin/activate && pip3 install --upgrade pip
 RUN source /root/venv/bin/activate && pip3 install pyyaml typing-extensions
-RUN source /root/venv/bin/activate && pip3 install torch==2.3.0 --index-url https://download.pytorch.org/whl/cpu --timeout 300
+RUN source /root/venv/bin/activate && pip3 install torch==2.3.0 --index-url ${TORCH_URL} --timeout 300
 RUN source /root/venv/bin/activate && pip3 install ipython jupyterlab
 RUN source /root/venv/bin/activate && pip3 install numpy==1.21.3
 RUN source /root/venv/bin/activate && pip3 install mujoco==3.1.6
