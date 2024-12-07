@@ -1,6 +1,7 @@
 ARG BASE_IMAGE=ubuntu:22.04
-ARG TORCH_URL=https://download.pytorch.org/whl/cpu
 FROM --platform=linux/amd64 ${BASE_IMAGE}
+
+ARG TORCH_URL=https://download.pytorch.org/whl/cpu
 
 # Adapted from https://qiita.com/takahashiakari/items/f096e5bcdfecf3d5ba90
 ENV DEBIAN_FRONTEND=noninteractive
