@@ -1,7 +1,11 @@
 ## SSH login with portforward
 
 ```bash
-ssh ubuntu@$REMOTEHOST -i ~/.ssh/20240817_lambda -L 6080:localhost:6080
+export REMOTEHOST=(ip address)
+```
+
+```bash
+ssh ubuntu@$REMOTEHOST -i $LAMBDA_PRIVATE_KEY -L 6080:localhost:6080
 ```
 
 ## Install Docker
@@ -52,4 +56,10 @@ sh build_gpu.sh
 
 ```bash
 sh run_gpu.sh
+```
+
+## Copy mlrun in the remote host
+
+```bash
+scp -r -i $LAMBDA_PRIVATE_KEY ubuntu@$REMOTEHOST:/home/ubuntu/border/mlruns $HOME/data/border
 ```
