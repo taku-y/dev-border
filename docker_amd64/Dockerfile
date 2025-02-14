@@ -87,7 +87,7 @@ RUN source /root/venv/bin/activate && pip3 install mujoco==3.1.6
 # RUN source /root/venv/bin/activate && pip3 install mujoco==2.3.7
 RUN source /root/venv/bin/activate && pip3 install gymnasium[box2d]==1.0.0
 #RUN source /root/venv/bin/activate && pip3 install gymnasium-robotics==1.3.1
-RUN source /root/venv/bin/activate && pip3 install git+https://github.com/Farama-Foundation/Gymnasium-Roboticsi
+RUN source /root/venv/bin/activate && pip3 install git+https://github.com/Farama-Foundation/Gymnasium-Robotics
 RUN source /root/venv/bin/activate && pip3 install tensorboard==2.16.2
 RUN source /root/venv/bin/activate && pip3 install mlflow==2.11.1
 RUN source /root/venv/bin/activate && pip3 install tabulate==0.9.0
@@ -132,7 +132,6 @@ RUN echo 'export CARGO_TARGET_DIR=$HOME/target' >> ~/.bashrc
 RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin' >> ~/.bashrc
 RUN echo 'export MUJOCO_GL=glfw' >> ~/.bashrc
 RUN echo 'source $HOME/venv/bin/activate' >> ~/.bashrc
-RUN echo 'export RUSTFLAGS="-C target-feature=+fp16"' >> ~/.bashrc
 
 # Aliases
 RUN echo "alias gs='git status'" >> ~/.bashrc
