@@ -86,7 +86,8 @@ RUN source /root/venv/bin/activate && pip3 install numpy==1.21.3
 RUN source /root/venv/bin/activate && pip3 install mujoco==3.1.6
 # RUN source /root/venv/bin/activate && pip3 install mujoco==2.3.7
 RUN source /root/venv/bin/activate && pip3 install gymnasium[box2d]==1.0.0
-RUN source /root/venv/bin/activate && pip3 install gymnasium-robotics==1.3.1
+#RUN source /root/venv/bin/activate && pip3 install gymnasium-robotics==1.3.1
+RUN source /root/venv/bin/activate && pip3 install git+https://github.com/Farama-Foundation/Gymnasium-Robotics
 RUN source /root/venv/bin/activate && pip3 install tensorboard==2.16.2
 RUN source /root/venv/bin/activate && pip3 install mlflow==2.11.1
 RUN source /root/venv/bin/activate && pip3 install tabulate==0.9.0
