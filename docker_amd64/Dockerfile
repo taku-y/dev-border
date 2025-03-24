@@ -131,8 +131,8 @@ RUN echo 'export PYTHONPATH=$HOME/border/border-py-gym-env/examples:$PYTHONPATH'
 RUN echo 'export CARGO_TARGET_DIR=$HOME/target' >> ~/.bashrc
 RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin' >> ~/.bashrc
 RUN echo 'export MUJOCO_GL=glfw' >> ~/.bashrc
+RUN echo 'export MLFLOW_DEFAULT_ARTIFACT_ROOT=/root/border/mlruns' >> ~/.bashrc
 RUN echo 'source $HOME/venv/bin/activate' >> ~/.bashrc
-RUN echo 'export RUSTFLAGS="-C target-feature=+fp16"' >> ~/.bashrc
 
 # Aliases
 RUN echo "alias gs='git status'" >> ~/.bashrc
@@ -158,6 +158,16 @@ RUN echo "alias tms='tmux new -s'" >> ~/.bashrc
 RUN echo "alias tr2='tree -L 2'" >> ~/.bashrc
 RUN echo "alias tr3='tree -L 3'" >> ~/.bashrc
 RUN echo "alias tr4='tree -L 4'" >> ~/.bashrc
+
+RUN echo $"\
+[alias] \n\
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative \n\
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative \n\
+  s = status \n\
+  b = branch \n\
+  l5 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -5 \n\
+  l10 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -10 \n\
+" >> ~/.gitconfig
 
 RUN rm /bin/sh && mv /bin/sh_tmp /bin/sh
 
