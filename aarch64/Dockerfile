@@ -73,6 +73,8 @@ RUN mv /bin/sh /bin/sh_tmp && ln -s /bin/bash /bin/sh
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # python
+# Avoid caching downloaded wheels in image layers (reduces image size)
+ENV PIP_NO_CACHE_DIR=1
 RUN cd /root && python3 -m venv venv
 RUN source /root/venv/bin/activate && pip3 install --upgrade pip
 RUN source /root/venv/bin/activate && pip3 install pyyaml typing-extensions
