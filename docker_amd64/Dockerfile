@@ -125,7 +125,7 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 # .bashrc
 RUN echo 'export LIBTORCH=$HOME/venv/lib/python3.10/site-packages/torch' >> ~/.bashrc
 RUN echo 'export LD_LIBRARY_PATH=$LIBTORCH/lib' >> ~/.bashrc
-RUN echo 'export LIBTORCH_CXX11_ABI=0' >> ~/.bashrc
+RUN echo 'export LIBTORCH_CXX11_ABI=1' >> ~/.bashrc
 RUN echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
 RUN echo 'export PYTHONPATH=$HOME/border/border-py-gym-env/examples:$PYTHONPATH' >> ~/.bashrc
 RUN echo 'export CARGO_TARGET_DIR=$HOME/target' >> ~/.bashrc
