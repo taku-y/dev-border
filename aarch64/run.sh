@@ -1,6 +1,9 @@
 # Path to the border repository to mount into the container.
 # Defaults to ../../border but can be overridden with the first argument.
-BORDER_PATH="${1:-$(pwd)/../../border}"
+# Resolved to an absolute path because podman (on the macOS VM) does not
+# resolve relative volume paths against the host shell's cwd.
+BORDER_PATH="${1:-../../border}"
+BORDER_PATH="$(cd "$(dirname "$BORDER_PATH")" && pwd)/$(basename "$BORDER_PATH")"
 
 podman run -td  \
     --name border \
