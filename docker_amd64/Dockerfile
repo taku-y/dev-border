@@ -92,7 +92,7 @@ RUN source /root/venv/bin/activate && pip3 install tensorboard==2.16.2
 RUN source /root/venv/bin/activate && pip3 install mlflow==2.11.1
 RUN source /root/venv/bin/activate && pip3 install tabulate==0.9.0
 RUN source /root/venv/bin/activate && pip3 install mlflow-export-import==1.2.0
-RUN source /root/venv/bin/activate && pip3 install minari[all]==0.5.1
+RUN source /root/venv/bin/activate && pip3 install minari[all]==0.5.3
 RUN source /root/venv/bin/activate && pip3 install marimo==0.9.14
 RUN source /root/venv/bin/activate && pip3 install altair==5.4.1
 RUN source /root/venv/bin/activate && pip3 install polars==1.9.0
