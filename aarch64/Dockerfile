@@ -118,42 +118,43 @@ RUN cd $HOME && mkdir -p .border/model
 RUN apt update && apt install -y openssh-server
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-# .bashrc
-RUN echo 'export LIBTORCH=$HOME/venv/lib/python3.10/site-packages/torch' >> ~/.bashrc
-RUN echo 'export LD_LIBRARY_PATH=$LIBTORCH/lib' >> ~/.bashrc
-RUN echo 'export LIBTORCH_CXX11_ABI=0' >> ~/.bashrc
-RUN echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
-RUN echo 'export PYTHONPATH=$HOME/border/border-py-gym-env/examples:$PYTHONPATH' >> ~/.bashrc
-RUN echo 'export CARGO_TARGET_DIR=$HOME/target' >> ~/.bashrc
-RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin' >> ~/.bashrc
-RUN echo 'export MUJOCO_GL=glfw' >> ~/.bashrc
-RUN echo 'source $HOME/venv/bin/activate' >> ~/.bashrc
-RUN echo 'export RUSTFLAGS="-C target-feature=+fp16"' >> ~/.bashrc
+# .bashrc (environment variables and aliases)
+RUN cat >> ~/.bashrc <<'EOF'
+export LIBTORCH=$HOME/venv/lib/python3.10/site-packages/torch
+export LD_LIBRARY_PATH=$LIBTORCH/lib
+export LIBTORCH_CXX11_ABI=0
+export PATH=$HOME/.local/bin:$PATH
+export PYTHONPATH=$HOME/border/border-py-gym-env/examples:$PYTHONPATH
+export CARGO_TARGET_DIR=$HOME/target
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin
+export MUJOCO_GL=glfw
+source $HOME/venv/bin/activate
+export RUSTFLAGS="-C target-feature=+fp16"
 
-# Aliases
-RUN echo "alias gs='git status'" >> ~/.bashrc
-RUN echo "alias gb='git branch'" >> ~/.bashrc
-RUN echo "alias gd='git diff'" >> ~/.bashrc
-RUN echo "alias gd1='git diff HEAD^'" >> ~/.bashrc
-RUN echo "alias gd2='git diff HEAD^^ HEAD^'" >> ~/.bashrc
-RUN echo "alias gd3='git diff HEAD^^^ HEAD^^'" >> ~/.bashrc
-RUN echo "alias gd4='git diff HEAD^^^^ HEAD^^^'" >> ~/.bashrc
-RUN echo "alias gl='git lg -5'" >> ~/.bashrc
-RUN echo "alias gll='git lg -10'" >> ~/.bashrc
-RUN echo "alias glll='git lg'" >> ~/.bashrc
-RUN echo "alias gpo='git push origin'" >> ~/.bashrc
-RUN echo "alias gfo='git fetch origin'" >> ~/.bashrc
-RUN echo "alias hl='highlight -O rtf --style=molokai'" >> ~/.bashrc
-RUN echo "alias cl='clear'" >> ~/.bashrc
-RUN echo "alias hg='history | grep '" >> ~/.bashrc
-RUN echo "alias dps='docker ps'" >> ~/.bashrc
-RUN echo "alias dpa='docker ps -a'" >> ~/.bashrc
-RUN echo "alias tml='tmux list-sessions'" >> ~/.bashrc
-RUN echo "alias tma='tmux a -t'" >> ~/.bashrc
-RUN echo "alias tms='tmux new -s'" >> ~/.bashrc
-RUN echo "alias tr2='tree -L 2'" >> ~/.bashrc
-RUN echo "alias tr3='tree -L 3'" >> ~/.bashrc
-RUN echo "alias tr4='tree -L 4'" >> ~/.bashrc
+alias gs='git status'
+alias gb='git branch'
+alias gd='git diff'
+alias gd1='git diff HEAD^'
+alias gd2='git diff HEAD^^ HEAD^'
+alias gd3='git diff HEAD^^^ HEAD^^'
+alias gd4='git diff HEAD^^^^ HEAD^^^'
+alias gl='git lg -5'
+alias gll='git lg -10'
+alias glll='git lg'
+alias gpo='git push origin'
+alias gfo='git fetch origin'
+alias hl='highlight -O rtf --style=molokai'
+alias cl='clear'
+alias hg='history | grep '
+alias dps='docker ps'
+alias dpa='docker ps -a'
+alias tml='tmux list-sessions'
+alias tma='tmux a -t'
+alias tms='tmux new -s'
+alias tr2='tree -L 2'
+alias tr3='tree -L 3'
+alias tr4='tree -L 4'
+EOF
 
 RUN rm /bin/sh && mv /bin/sh_tmp /bin/sh
 
