@@ -78,7 +78,7 @@ ENV PIP_NO_CACHE_DIR=1
 RUN cd /root && python3 -m venv venv
 RUN source /root/venv/bin/activate && pip3 install --upgrade pip
 RUN source /root/venv/bin/activate && pip3 install pyyaml typing-extensions
-RUN source /root/venv/bin/activate && pip3 install torch==2.3.0
+RUN source /root/venv/bin/activate && pip3 install torch==2.11.0
 RUN source /root/venv/bin/activate && pip3 install ipython jupyterlab
 RUN source /root/venv/bin/activate && pip3 install numpy==1.21.3
 RUN source /root/venv/bin/activate && pip3 install mujoco==3.1.6
