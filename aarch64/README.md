@@ -21,6 +21,14 @@ The scripts in this directory are tested on M2 Macbook Air.
   sh run.sh
   ```
 
+  By default this mounts `../../border` (the `border` repository cloned next to
+  `dev-border`) into the container at `/root/border`. To mount a `border`
+  repository located elsewhere, pass its path as the first argument:
+
+  ```bash
+  sh run.sh /path/to/border
+  ```
+
 You can use GUI in the container with a web browser with `localhost:6080`.
 The password for user `ubuntu` is `ubuntu`.
 
